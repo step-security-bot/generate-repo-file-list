@@ -6,7 +6,146 @@ This GitHub Action generates an HTML file list for a GitHub repository with link
 
 To use this action, create a workflow file (e.g., `.github/workflows/main.yml`) in your repository with the following content:
 
-Place `2` file markers in your README.md: `<!-- FILE_LIST_START -->` and `<!-- FILE_LIST_END -->` - the file list will be automatically added between these 2 points in your `README.md`
+Place `2` file markers in your README.md: `<!-- FILE_LIST_START -->
+<h1>## File List</h1>
+
+<p># Here is a list of files included in this repository:</p>
+
+<div class="lazyload-placeholder" data-content="file-list-1" style="min-height: 400px;"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyLoadElements = document.querySelectorAll('.lazyload-placeholder');
+
+    if ("IntersectionObserver" in window) {
+        let rootMargin = '0px 0px 400px 0px';
+        let threshold = 0.5;
+        if (window.innerWidth <= 768) {  // Mobile devices
+            rootMargin = '0px 0px 100px 0px';
+            threshold = 0.1;
+        } else if (window.innerWidth <= 1024) {  // Tablets
+            rootMargin = '0px 0px 200px 0px';
+            threshold = 0.3;
+        } else if (window.innerWidth <= 1440) {  // Small desktops
+            rootMargin = '0px 0px 300px 0px';
+            threshold = 0.4;
+        } else {  // Large desktops
+            rootMargin = '0px 0px 400px 0px';
+            threshold = 0.5;
+        }
+        let observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let placeholder = entry.target;
+                    let contentId = placeholder.dataset.content;
+                    let file_list_html = '';
+                    switch(contentId) {
+                        case 'file-list-1':
+                            file_list_html = `<ul><h2 style="color: #a09739;">Repo Root</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.gitignore" style="color: #eda8f9;">.gitignore</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.jsbeautifyrc" style="color: #53cd3e;">.jsbeautifyrc</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.pre-commit-config.yaml" style="color: #759d79;">.pre-commit-config.yaml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.prettierrc" style="color: #949f26;">.prettierrc</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.stylelintrc.json" style="color: #6483ec;">.stylelintrc.json</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.vale.ini" style="color: #fdbb78;">.vale.ini</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.yamllint" style="color: #5eb10d;">.yamllint</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/CNAME" style="color: #ce9390;">CNAME</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/CODE_OF_CONDUCT.md" style="color: #b89e75;">CODE_OF_CONDUCT.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/CONTRIBUTING.md" style="color: #55af29;">CONTRIBUTING.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/README.md" style="color: #56bc0c;">README.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/dockerfile" style="color: #4acac6;">dockerfile</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/favicon.ico" style="color: #26d259;">favicon.ico</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/file_list.html" style="color: #f0bc90;">file_list.html</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/file_list.md" style="color: #e98762;">file_list.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/readme.html" style="color: #e3900b;">readme.html</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/requirements.txt" style="color: #ef9df8;">requirements.txt</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/sitemap.xml" style="color: #bf83b0;">sitemap.xml</a></li>
+<h2 style="color: #b29799;">JavaScript</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.eslintrc.js" style="color: #db68af;">.eslintrc.js</a></li>
+<h2 style="color: #3af54d;">YAML</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/dependabot.yml" style="color: #aecba4;">.github/dependabot.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/ActionLint.yml" style="color: #9f7985;">.github/workflows/ActionLint.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/codeql.yml" style="color: #4bbac0;">.github/workflows/codeql.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/dependency-review.yml" style="color: #54ee2f;">.github/workflows/dependency-review.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/greetings.yml" style="color: #33e59b;">.github/workflows/greetings.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/jekyll-gh-pages.yml" style="color: #f67303;">.github/workflows/jekyll-gh-pages.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/main.yml" style="color: #6baecd;">.github/workflows/main.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/scorecards.yml" style="color: #2ce426;">.github/workflows/scorecards.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/sitemap.yml" style="color: #7ca7d1;">.github/workflows/sitemap.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/stale.yml" style="color: #d4744f;">.github/workflows/stale.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/static.yml" style="color: #35a233;">.github/workflows/static.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.markdownlint.yml" style="color: #898cb3;">.markdownlint.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.scss-lint.yml" style="color: #f787dd;">.scss-lint.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/_config.yml" style="color: #9ec51e;">_config.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/action.yml" style="color: #f27838;">action.yml</a></li>
+<h2 style="color: #7989a0;">src</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/src/generate_file_list.py" style="color: #25cbdd;">src/generate_file_list.py</a></li></ul>`;
+                            break;
+                    }
+                    placeholder.innerHTML = file_list_html;
+                    observer.unobserve(placeholder);
+                    console.log(`Loaded content for ${contentId}`);
+                }
+            });
+        }, { rootMargin: rootMargin, threshold: threshold });
+
+        lazyLoadElements.forEach(element => {
+            element.style.marginTop = '-17px';
+            observer.observe(element);
+        });
+    } else {
+        lazyLoadElements.forEach(placeholder => {
+            let contentId = placeholder.dataset.content;
+            let file_list_html = '';
+            switch(contentId) {
+                case 'file-list-1':
+                    file_list_html = `<ul><h2 style="color: #a09739;">Repo Root</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.gitignore" style="color: #eda8f9;">.gitignore</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.jsbeautifyrc" style="color: #53cd3e;">.jsbeautifyrc</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.pre-commit-config.yaml" style="color: #759d79;">.pre-commit-config.yaml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.prettierrc" style="color: #949f26;">.prettierrc</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.stylelintrc.json" style="color: #6483ec;">.stylelintrc.json</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.vale.ini" style="color: #fdbb78;">.vale.ini</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.yamllint" style="color: #5eb10d;">.yamllint</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/CNAME" style="color: #ce9390;">CNAME</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/CODE_OF_CONDUCT.md" style="color: #b89e75;">CODE_OF_CONDUCT.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/CONTRIBUTING.md" style="color: #55af29;">CONTRIBUTING.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/README.md" style="color: #56bc0c;">README.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/dockerfile" style="color: #4acac6;">dockerfile</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/favicon.ico" style="color: #26d259;">favicon.ico</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/file_list.html" style="color: #f0bc90;">file_list.html</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/file_list.md" style="color: #e98762;">file_list.md</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/readme.html" style="color: #e3900b;">readme.html</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/requirements.txt" style="color: #ef9df8;">requirements.txt</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/sitemap.xml" style="color: #bf83b0;">sitemap.xml</a></li>
+<h2 style="color: #b29799;">JavaScript</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.eslintrc.js" style="color: #db68af;">.eslintrc.js</a></li>
+<h2 style="color: #3af54d;">YAML</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/dependabot.yml" style="color: #aecba4;">.github/dependabot.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/ActionLint.yml" style="color: #9f7985;">.github/workflows/ActionLint.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/codeql.yml" style="color: #4bbac0;">.github/workflows/codeql.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/dependency-review.yml" style="color: #54ee2f;">.github/workflows/dependency-review.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/greetings.yml" style="color: #33e59b;">.github/workflows/greetings.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/jekyll-gh-pages.yml" style="color: #f67303;">.github/workflows/jekyll-gh-pages.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/main.yml" style="color: #6baecd;">.github/workflows/main.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/scorecards.yml" style="color: #2ce426;">.github/workflows/scorecards.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/sitemap.yml" style="color: #7ca7d1;">.github/workflows/sitemap.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/stale.yml" style="color: #d4744f;">.github/workflows/stale.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.github/workflows/static.yml" style="color: #35a233;">.github/workflows/static.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.markdownlint.yml" style="color: #898cb3;">.markdownlint.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/.scss-lint.yml" style="color: #f787dd;">.scss-lint.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/_config.yml" style="color: #9ec51e;">_config.yml</a></li>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/action.yml" style="color: #f27838;">action.yml</a></li>
+<h2 style="color: #7989a0;">src</h2>
+<li><a href="https://github.com/step-security-bot/generate-repo-file-list/blob/main/src/generate_file_list.py" style="color: #25cbdd;">src/generate_file_list.py</a></li></ul>`;
+                    break;
+            }
+            placeholder.innerHTML = file_list_html;
+        });
+    }
+});
+</script>
+
+<!-- FILE_LIST_END -->` - the file list will be automatically added between these 2 points in your `README.md`
 
 Remove the `cron` job if you don't want to run the action daily.
 You can also remoove the `push` and `pull_request` triggers if you only want to run the action manually.
